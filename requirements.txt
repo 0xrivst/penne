@@ -1,0 +1,6 @@
+pyrebase4==4.8.0
+flask==3.1.0
+firebase-admin==6.6.0
+python-dotenv==1.0.1
+sqids==0.5.1
+cryptography==44.0.2
