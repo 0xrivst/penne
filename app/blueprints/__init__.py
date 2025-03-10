@@ -2,9 +2,9 @@
 Views package initialization.
 """
 
-from app.views.paste import paste_bp
-from app.views.auth import auth_bp
-from app.views.index import index_bp
+from app.blueprints.paste import paste_bp
+from app.blueprints.auth import auth_bp
+from app.blueprints.index import index_bp
 
 blueprints = [paste_bp, auth_bp, index_bp]
 

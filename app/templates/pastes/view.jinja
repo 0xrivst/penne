@@ -1,0 +1,47 @@
+{% extends "base.jinja" %}
+{% block content %}
+    <canvas id="qrCanvas" class="d-none"></canvas>
+    <div class="d-flex flex-wrap justify-content-between mb-3">
+        <div class="btn-group mb-3" role="group" aria-label="Paste actions">
+            <button type="button"
+                    class="btn btn-outline-secondary d-flex align-items-center column-gap-2"
+                    onclick="penne.pasteToFile(document.getElementById('pasteTitle').innerText, document.getElementById('pasteContents').innerText)">
+                {% include "icons/download.svg" %}
+                Download
+            </button>
+            <button type="button"
+                    class="btn btn-outline-secondary d-flex align-items-center column-gap-2"
+                    onclick="penne.pasteLinkToQr()">
+                {% include "icons/qr-code.svg" %}
+                Link to QR
+            </button>
+            <button type="button"
+                    class="btn btn-outline-secondary d-flex align-items-center column-gap-2"
+                    onclick="window.print()">
+                {% include "icons/printer.svg" %}
+                Print
+            </button>
+        </div>
+        {% if paste.meta.user_id == g.user['localId'] %}
+            <form action="{{ url_for('paste.delete', paste_id=paste.meta['paste_id']) }}"
+                  method="post">
+                <button type="submit"
+                        class="btn btn-outline-secondary d-flex align-items-center column-gap-2">
+                    {% include "icons/delete.svg" %}
+                    Delete
+                </button>
+            </form>
+        {% endif %}
+    </div>
+    <div class="card print-visible">
+        <div class="card-body">
+            <h1 id="pasteTitle" class="card-title">{{ paste.title|e }}</h1>
+            <div id="pasteContents" class="card-text pasta-body">{{ paste.contents|e }}</div>
+        </div>
+        <div class="card-footer">
+            <div>Created at: {{ paste.meta.created_at|format_time }}</div>
+            {% if paste.meta.expires_at != None %}<div>Expires at: {{ paste.meta.expires_at|format_time }}</div>{% endif %}
+        </div>
+    </div>
+    <script type="text/javascript">penne.processEncryptedPaste(document.getElementById('pasteTitle').innerText, document.getElementById('pasteContents').innerText);</script>
+{% endblock content %}

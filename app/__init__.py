@@ -1,8 +1,10 @@
 from flask import Flask
 
-from app.views import register_blueprints
+from app.blueprints import register_blueprints
 from app.service.pyrebase import pyrebase
 from app.service.asset import AssetManager
+from app.service.crypto import crypto
+from app.service.firebase import firebase
 
 
 def create_app(config):
@@ -10,8 +12,10 @@ def create_app(config):
     app.config.from_object(config)
 
     with app.app_context():
-        pyrebase.init_pyrebase()
         AssetManager().init_asset_manager()
+        crypto.init_crypto()
+        pyrebase.init_pyrebase()
+        firebase.init_firebase()
 
     register_blueprints(app)
 

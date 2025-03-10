@@ -4,8 +4,8 @@ Pyrebase manager
 This module contains a class for managing Pyrebase operations.
 """
 
-from pyrebase import initialize_app
 from flask import current_app
+from pyrebase import initialize_app
 
 
 class PyrebaseManager:
@@ -13,12 +13,13 @@ class PyrebaseManager:
     Pyrebase manager instance.
 
     Attributes:
-        _firebase (pyrebase.Pyrebase): The Pyrebase object
-        _firebase_auth (pyrebase.Auth): The Pyrebase authentication object
-        _firebase_db (pyrebase.Database): The Pyrebase database object
+        _firebase: The Pyrebase object
+        _firebase_auth: The Pyrebase authentication object
+        _firebase_db: The Pyrebase database object
     """
 
     def __init__(self):
+
         self._firebase = None
         self._firebase_auth = None
         self._firebase_db = None
@@ -28,7 +29,7 @@ class PyrebaseManager:
         Initialize Pyrebase object.
 
         Args:
-            app (flask.Flask): The Flask app
+            app: The Flask app
         """
         config = {
             "apiKey": current_app.config["BASE_API_KEY"],
