@@ -1,8 +1,8 @@
 from flask import Flask
 
 from app.views import register_blueprints
-from app.util.pyrebasemanager import pyrebase
-from app.util.assetmanager import AssetManager
+from app.service.pyrebase import pyrebase
+from app.service.asset import AssetManager
 
 
 def create_app(config):

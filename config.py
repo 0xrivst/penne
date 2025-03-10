@@ -11,8 +11,7 @@ load_dotenv()
 class BaseConfig:
     """Base configuration class for the application. See README.md for variable information."""
 
-    FLASK_SECRET_KEY = os.getenv("FLASK_SECRET_KEY")
-    FLASK_SECRET_KEY = os.getenv("FLASK_SECRET_KEY")
+    SECRET_KEY = os.getenv("FLASK_SECRET_KEY")
     BASE_API_KEY = os.getenv("BASE_API_KEY")
     BASE_AUTH_DOMAIN = os.getenv("BASE_AUTH_DOMAIN")
     BASE_DB_URL = os.getenv("BASE_DB_URL")

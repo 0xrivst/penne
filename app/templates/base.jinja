@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description"
+          content="Simple, private paste bin service, no ads" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ asset.url_for('styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>penne - paste bin</title>
+  </head>
+  <body>
+    <main>
+      <div class="container my-4">
+        <div class="container is-fluid">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }} mb-4" role="alert">{{ message|e }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block content %}
+          {% endblock content %}
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
