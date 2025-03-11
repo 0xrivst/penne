@@ -5,6 +5,7 @@ from app.service.pyrebase import pyrebase
 from app.service.asset import AssetManager
 from app.service.crypto import crypto
 from app.service.firebase import firebase
+from app.util.filters import register_filters
 
 
 def create_app(config):
@@ -16,6 +17,7 @@ def create_app(config):
         crypto.init_crypto()
         pyrebase.init_pyrebase()
         firebase.init_firebase()
+        register_filters()
 
     register_blueprints(app)
 

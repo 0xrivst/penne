@@ -19,6 +19,7 @@ from flask import (
 )
 from requests.exceptions import HTTPError
 from app.service.pyrebase import pyrebase
+from app.util.auth import login_required
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -73,11 +74,37 @@ def login():
             session.clear()
             session["user"] = user
             update_signed_in_at()
-            return redirect(url_for("index.index"))
+            return redirect(url_for("main.index"))
 
         flash(error)
 
     return render_template("auth/login.jinja")
+
+
+@auth_bp.route("/user/<string:user_id>", methods=("GET", "POST"))
+def profile(user_id):
+
+    user = session.get("user")
+
+    error = None
+
+    if user["localId"] != user_id:
+        error = "Unauthorized"
+        flash(error)
+        return redirect(url_for("auth.login"))
+
+    if request.method == "POST":
+        token = user["idToken"]
+        pyrebase.get_firebase_auth().update_profile(
+            token, request.form["userDisplayName"]
+        )
+        new_name = pyrebase.get_firebase_auth().get_account_info(token)["users"][0][
+            "displayName"
+        ]
+        user["displayName"] = new_name
+        session["user"] = user
+
+    return render_template("auth/profile.jinja")
 
 
 @auth_bp.route("/logout")
@@ -85,7 +112,7 @@ def logout():
     """Clears user's session"""
 
     session.clear()
-    return redirect(url_for("index.index"))
+    return redirect(url_for("main.index"))
 
 
 @auth_bp.before_app_request
@@ -121,16 +148,3 @@ def update_signed_in_at():
 def is_token_expired():
     """Check if the token in session has expired"""
     return int(time.time()) - session.get("signed_in_at")
-
-
-def login_required(view):
-    """Checks if user is present in the g namespace, otherwise redirects to login"""
-
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for("auth.login"))
-
-        return view(**kwargs)
-
-    return wrapped_view

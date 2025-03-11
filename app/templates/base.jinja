@@ -6,12 +6,14 @@
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="{{ asset.url_for('styles.css') }}">
+    <script src="{{ asset.url_for("main.js") }}"></script>
+    <link rel="stylesheet" href="{{ asset.url_for("styles.css") }}">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <title>penne - paste bin</title>
+    <title>penne - yet another paste bin</title>
   </head>
   <body>
     <main>
+      {% include "shared/header.jinja" %}
       <div class="container my-4">
         <div class="container is-fluid">
           {% with messages = get_flashed_messages(with_categories=true) %}

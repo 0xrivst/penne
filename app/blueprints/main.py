@@ -7,10 +7,10 @@ This blueprint contains the route for index page.
 from flask import Blueprint, render_template, g
 from app.util.paste import construct_expiry_values
 
-index_bp = Blueprint("index", __name__, url_prefix="/")
+main_bp = Blueprint("main", __name__, url_prefix="/")
 
 
-@index_bp.route("/")
+@main_bp.route("/")
 def index():
     """
     Renders index page.

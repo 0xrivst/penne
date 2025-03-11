@@ -41,7 +41,6 @@ class Paste:
             "user_id": self.meta.user_id,
             "created_at": self.meta.created_at,
             "expires_at": self.meta.expires_at,
-            "paste_id": self.meta.paste_id,
             "title": crypto.decrypt(self.title) if to_decrypt else self.title,
             "contents": (
                 crypto.decrypt(self.contents)
@@ -61,7 +60,6 @@ class Paste:
         user_id = source.get("user_id")
         created_at = source.get("created_at")
         expires_at = source.get("expires_at")
-        paste_id = source.get("paste_id")
         title = (
             crypto.decrypt(source.get("title")) if encrypted else source.get("title")
         )
@@ -71,7 +69,7 @@ class Paste:
             else source.get("contents", None)
         )
         return Paste(
-            PasteMeta(user_id, created_at, expires_at, paste_id),
+            PasteMeta(user_id, created_at, expires_at),
             title,
             contents,
         )
