@@ -14,7 +14,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     publicPath: '/static/dist/',
-    path: path.resolve(__dirname, '..', 'static', 'dist'),
+    path: path.resolve(__dirname, '..', 'penne', 'static', 'dist'),
     clean: true,
     library: {
       name: 'penne',

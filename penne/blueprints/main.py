@@ -5,7 +5,7 @@ This blueprint contains the route for index page.
 """
 
 from flask import Blueprint, render_template, g
-from app.util.paste import construct_expiry_values
+from penne.util.paste import construct_expiry_values
 
 main_bp = Blueprint("main", __name__, url_prefix="/")
 

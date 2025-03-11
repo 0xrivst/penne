@@ -2,9 +2,9 @@
 Views package initialization.
 """
 
-from app.blueprints.paste import paste_bp
-from app.blueprints.auth import auth_bp
-from app.blueprints.main import main_bp
+from penne.blueprints.paste import paste_bp
+from penne.blueprints.auth import auth_bp
+from penne.blueprints.main import main_bp
 
 blueprints = [paste_bp, auth_bp, main_bp]
 

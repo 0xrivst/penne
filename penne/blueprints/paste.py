@@ -8,12 +8,12 @@ from datetime import timedelta
 from flask import Blueprint, request, redirect, url_for, g, render_template, flash
 from google.cloud.firestore_v1 import Query
 from google.cloud.firestore_v1.base_query import FieldFilter, Or
-from app.util.time import get_current_utc_datetime
-from app.util.sqids import sqids
-from app.util.auth import login_required
-from app.service.firebase import firebase
-from app.service.crypto import crypto
-from app.models.Paste import Paste, PasteMeta
+from penne.util.time import get_current_utc_datetime
+from penne.util.sqids import sqids
+from penne.util.auth import login_required
+from penne.service.firebase import firebase
+from penne.service.crypto import crypto
+from penne.models.Paste import Paste, PasteMeta
 
 paste_bp = Blueprint("paste", __name__, url_prefix="/paste")
 

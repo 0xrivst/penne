@@ -18,8 +18,8 @@ from flask import (
     g,
 )
 from requests.exceptions import HTTPError
-from app.service.pyrebase import pyrebase
-from app.util.auth import login_required
+from penne.service.pyrebase import pyrebase
+from penne.util.auth import login_required
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 

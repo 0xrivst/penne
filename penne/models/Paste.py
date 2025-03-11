@@ -6,7 +6,7 @@ This module contains a class for representing a paste.
 
 import datetime
 from dataclasses import dataclass
-from app.service.crypto import crypto
+from penne.service.crypto import crypto
 
 
 @dataclass
