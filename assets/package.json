@@ -7,10 +7,10 @@
   "author": "",
   "license": "AGPL-3.0-or-later",
   "scripts": {
+    "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode=development",
-    "watch": "webpack --mode=development --watch",
-    "prod": "webpack --mode=production"
+    "watch": "webpack --mode=development --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -34,6 +34,5 @@
   "dependencies": {
     "@noble/ciphers": "^1.2.1",
     "uqr": "^0.1.2"
-  },
-  "packageManager": "pnpm@10.6.1+sha512.40ee09af407fa9fbb5fbfb8e1cb40fbb74c0af0c3e10e9224d7b53c7658528615b2c92450e74cfad91e3a2dcafe3ce4050d80bda71d757756d2ce2b66213e9a3"
+  }
 }

@@ -1,0 +1,33 @@
+{
+  "builds": [
+    {
+      "src": "assets/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "../penne/static/dist"
+      }
+    },
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.py"
+    }
+  ],
+  "env": {
+    "FLASK_CONFIG": "prod"
+  },
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 30
+    }
+  }
+}
